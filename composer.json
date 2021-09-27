@@ -1,0 +1,26 @@
+{
+    "name": "samankhdev/lara-file",
+    "description": "This package of Laravel helps you to upload multiple files.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "samankhdev",
+            "email": "samkh.dev@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Samkhdev\\LaraFile\\":"src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "~8"
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Samkhdev\\LaraFile\\LaraFileServiceProvider"
+            ]
+        }
+    }
+}
