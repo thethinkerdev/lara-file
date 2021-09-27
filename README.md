@@ -39,7 +39,7 @@
     foreach ($request->file as $file) {
         array_push($files, [
             'dir'=>'images',
-            'disk'=>'PrivateFiles'
+            'disk'=>'PrivateFiles',
             "file" => $file
         ]);
     }
