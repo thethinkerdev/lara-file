@@ -5,21 +5,20 @@ namespace Samkhdev\LaraFile;
 class LaraUpload
 {
     private $data;
+    private $names = [];
     public function __construct(array $data)
     {
         $this->data = $data;
     }
-    public function send()
+    public function send(): array
     {
-
-        $names = [];
         foreach ($this->data as $FileInfo) {
             $name = config('lara-file.get-random-code') . '.' . $FileInfo['file']->getClientOriginalExtension();
             $disk = $FileInfo['disk'] ?? config("lara-file.default-disk");
             $dir = $FileInfo['dir'] ?? config("lara-file.default-dir");
             $FileInfo['file']->storeAs($dir, $name, $disk);
-            $names[$dir] = $name;
+            $this->names[$dir] = $name;
         }
-        return $names;
+        return $this->names;
     }
 }
