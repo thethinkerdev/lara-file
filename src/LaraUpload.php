@@ -10,7 +10,12 @@ class LaraUpload
     private $data = [];
     private $names = [];
     public $FileName = 'file';
-    public function __construct($data)
+
+    public function __construct(array $data)
+    {
+        array_push($this->data, ...$data);
+    }
+    public function add(array $data)
     {
         array_push($this->data, ...$data);
     }
