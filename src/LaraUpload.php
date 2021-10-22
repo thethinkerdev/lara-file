@@ -20,8 +20,8 @@ class LaraUpload
         foreach ($this->data as $FileInfo) {
             $name = $this->hashName($FileInfo['file']);
 
-            $disk = $this->getDisk($FileInfo['disk']);
-            $dir = $this->getDir($FileInfo['dir']);
+            $disk = $this->getDisk($FileInfo);
+            $dir = $this->getDir($FileInfo);
 
             $FileInfo['file']->storeAs($dir, $name, $disk);
             $this->names[$dir] = $name;
@@ -39,12 +39,12 @@ class LaraUpload
         return $this->getRandomCode() . '.' . $file->getClientOriginalExtension();
     }
 
-    private function getDisk($file): string
+    private function getDisk($FileInfo): string
     {
-        return $file ?? config("lara-file.default-disk");
+        return $FileInfo['disk'] ?? config("lara-file.default-disk");
     }
-    private function getDir($file): string
+    private function getDir($FileInfo): string
     {
-        return $file ?? config("lara-file.default-dir");
+        return $FileInfo['dir']?? config("lara-file.default-dir");
     }
 }
