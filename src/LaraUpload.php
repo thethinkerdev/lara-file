@@ -11,10 +11,22 @@ class LaraUpload
     private $names = [];
     public $FileName = 'file';
 
-    public function add(array $data)
+    public function push(object $file, ?string $dir, ?string $disk): bool
+    {
+        array_push($this->data, [
+            "file" => $file,
+            "dir" => $dir,
+            "disk" => $disk,
+        ]);
+        return true;
+    }
+
+    public function pushMany(array $data): bool
     {
         array_push($this->data, ...$data);
+        return true;
     }
+
     public function send(): array
     {
         foreach ($this->data as $FileInfo) {
@@ -45,6 +57,6 @@ class LaraUpload
     }
     private function getDir($FileInfo): string
     {
-        return $FileInfo['dir']?? config("lara-file.default-dir");
+        return $FileInfo['dir'] ?? config("lara-file.default-dir");
     }
 }
