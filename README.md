@@ -49,6 +49,20 @@ $lara = new LaraUpload(
     );
 ```
 
+- add files after constructor
+
+```php
+$lara->add(
+    [
+        [
+            [
+                'dir'=>"pictures",
+                'file'=>$request->file
+            ]
+        ]
+    ]
+)
+```
 
 # Config
 
@@ -59,8 +73,6 @@ pa vendor:publish
 ```
 
 - one file named **laraFile.php** in config directory will create
-
-
 
 # Version `1`
 
