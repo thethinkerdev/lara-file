@@ -11,7 +11,7 @@ class LaraUpload
     private $names = [];
     public $FileName = 'file';
 
-    public function push(object $file, string $dir = "", string $disk = ""): bool
+    public function push(object $file, string $dir = null, string $disk = null): bool
     {
         array_push($this->data, [
             "file" => $file,
