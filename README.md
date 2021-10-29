@@ -4,75 +4,55 @@
 
 - The Package `ramsey/uuid` is used to hash file names.
 
+# Installation
+
+```bash
+composer require samankhdev/lara-file
+```
+
 # Version `2`
 
 - Example
 
-* Simple Uploading
+## Single upload file
 
 ```php
-  $lara = new LaraUpload(
-        [
+    $laraFile = new LaraUpload();
+    $laraFile->push($request->img, "products/img");
+    $laraFile->send();
+```
+
+#tips
+
+1. first param is your **file**
+2. second param is location of this file
+3. and last param choose **disk** default is `public` and optional
+4. for example =>`products/img` will be in `public/products/img` in -> **storage**
+5. the result of **push** method is `boolean`
+
+## Multiple upload files
+
+```php
+    $laraFile = new LaraUpload();
+    $laraFile->pushMany([
             [
                 'dir'=>'images',
                 'file'=>$request->file,
-                'disk'=>'public'
-            ]
-        ]
-    );
-    $lara->send();
-```
-
-- `dir` : you can choose your file where be should in `storage`, in top example I upload in `storage/app/public/images`
-- `file` : you should give it your file.
-- `disk` : you can choose on of your disks in `filesystem.php` in config directory.
-
-## Multiple-Upload
-
-- you can easily upload multiple files
-
-```php
-$lara = new LaraUpload(
-        [
-            [
-                'dir'=>'images',
-                'file'=>$request->file,
-                'disk'=>'privateImages'
-            ],
-            [
-                'dir'=>"pictures",
-                'file'=>$request->file,
-                'disk'=>'public'
-            ],
-            ...
-        ]
-    );
-```
-
-- add files after constructor
-
-```php
-$lara->add(
-    [
-        [
-            [
-                'dir'=>"pictures",
-                'file'=>$request->file
-            ]
-        ]
-    ]
-)
+                'disk'=>'privateImages' //default is `public`
+            ],...
+    ]);
+        $laraFile->send();
 ```
 
 # Config
 
-- to change default config run this command
+- to change default -> default disk and default directory
 
 ```bash
 pa vendor:publish
 ```
 
-- one file named **laraFile.php** in config directory will create
+- now you can see a file named **laraFile.php** in config directory .
 
 # Version `1`
 
